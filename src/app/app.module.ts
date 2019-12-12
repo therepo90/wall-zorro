@@ -9,6 +9,7 @@ import en from '@angular/common/locales/en';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { StorageModule } from './storage/storage.module';
+import { WallModule } from './wall/wall.module';
 
 registerLocaleData(en);
 
@@ -20,6 +21,7 @@ registerLocaleData(en);
         SharedModule,
         AuthModule.forRoot(),
         StorageModule.forRoot(),
+        WallModule,
     ],
     providers: [{ provide: NZ_I18N, useValue: en_US }],
     bootstrap: [AppComponent],

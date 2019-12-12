@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { LoginComponent } from './ui/login/login.component';
+import { LoginComponent } from './containers/login/login.component';
 import { AuthService } from './services/auth.service';
 import { SharedModule } from '../shared/shared.module';
 
