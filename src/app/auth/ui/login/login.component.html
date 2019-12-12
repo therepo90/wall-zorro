@@ -16,7 +16,7 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-control>
-        <button nz-button class="login-form-button" [nzType]="'primary'" [disabled]="form.invalid">Log in</button>
+        <button nz-button class="login-form-button" [nzType]="'primary'" [disabled]="form.invalid || loading" (click)="login()">Log in</button>
       </nz-form-control>
     </nz-form-item>
   </form>
