@@ -1,2 +1,8 @@
-Posts:
-<p>{{visiblePosts$ | async | json}}</p>
+<div class="grid">
+    <div *ngFor="let postsColumn of columns" class="post-column">
+        <div *ngFor="let post of postsColumn" class="post">
+              <div class="user-id">UserId: {{ post.userId }}</div>
+              <div class="title">Title: {{ post.title }}</div>
+        </div>
+    </div>
+</div>

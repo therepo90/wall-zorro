@@ -1,0 +1,41 @@
+@import '../../../styles/breakpoints';
+
+.post-column {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.post {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+.user-id {
+    font-size: 16px;
+}
+
+.title {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @media screen and (min-width: $tablet-up) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (min-width: $desktop-up) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
