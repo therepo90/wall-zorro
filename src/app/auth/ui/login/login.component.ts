@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from '../../../validators/validators';
 
 @Component({
     selector: 'app-login',
@@ -7,22 +8,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    validateForm: FormGroup;
+    form: FormGroup;
 
-    submitForm(): void {
-        for (const i in this.validateForm.controls) {
-            this.validateForm.controls[i].markAsDirty();
-            this.validateForm.controls[i].updateValueAndValidity();
-        }
-    }
+    submitForm(): void {}
 
     constructor(private fb: FormBuilder) {}
 
     ngOnInit(): void {
-        this.validateForm = this.fb.group({
-            userName: [null, [Validators.required]],
-            password: [null, [Validators.required]],
-            remember: [true],
+        this.form = this.fb.group({
+            userName: [null, [Validators.required, Validators.minLength(5)]],
+            password: [
+                null,
+                [Validators.required, CustomValidators.loginPassword],
+            ],
         });
     }
 }
