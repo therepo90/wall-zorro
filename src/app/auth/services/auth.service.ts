@@ -26,4 +26,8 @@ export class AuthService {
         this.storageService.delete(this.AUTH_TOKEN_KEY);
         this.router.navigateByUrl('/login');
     }
+
+  isAuthenticated() {
+    return this.storageService.get(this.AUTH_TOKEN_KEY) !== null;
+  }
 }
