@@ -1,14 +1,17 @@
 <div class="meta-bar">
-    <button nz-button nzType="default" (click)="logout()" nzSize="large">Log out</button>
+    <button nz-button nzType="default" (click)="logout()" nzSize="large">
+        Log out
+    </button>
     <div>
-        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="input search text" />
+        <nz-input-group nzSearch nzSize="large">
+            <input
+                type="text"
+                nz-input
+                placeholder="input search text"
+                [ngModel]="searchText"
+                (ngModelChange)="onSearch($event)"
+            />
         </nz-input-group>
-        <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSize="large" nzSearch>
-                Search
-            </button>
-        </ng-template>
     </div>
 </div>
 <div class="grid">

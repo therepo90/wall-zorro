@@ -20,8 +20,10 @@ import { AuthService } from '../../../auth/services/auth.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WallComponent implements OnInit, OnDestroy {
-    private _visiblePosts: Post[] = [];
+    private _availablePosts: Post[] = [];
+    private _visiblePostsFiltered: Post[] = [];
     public columns: Array<Array<Post>> = [[]];
+    public searchText: string;
 
     constructor(
         private wallService: WallService,
@@ -38,29 +40,34 @@ export class WallComponent implements OnInit, OnDestroy {
             )
             .subscribe((posts: Array<Post>) => {
                 const allPosts = posts;
+                // @TODO remove
                 this.columns = chunk(allPosts, 3);
-                this.cd.markForCheck();
+                this.updateColumns(allPosts);
                 return;
 
                 const subscription = interval(1000)
                     .pipe(untilDestroyed(this))
                     .subscribe(() => {
-                        const newArray = [
-                            ...this._visiblePosts,
+                        const newPosts = [
+                            ...this._availablePosts,
                             allPosts.shift(),
                         ];
-                        const sortedArray = orderBy(newArray, e => e.id, [
-                            'desc',
-                        ]);
-                        this._visiblePosts = sortedArray;
-                        this.columns = chunk(sortedArray, 3);
-                        console.log({ sortedArray }, { x: this.columns });
+
+                        this.updateColumns(newPosts);
                         if (allPosts.length === 0) {
                             subscription.unsubscribe();
                         }
-                        this.cd.markForCheck();
                     });
             });
+    }
+
+    private updateColumns(newPosts: Array<Post>) {
+        this._availablePosts = newPosts;
+        const filteredArray = this.getFilteredPosts(newPosts, this.searchText);
+        const sortedArray = orderBy(filteredArray, e => e.id, ['desc']);
+        this._visiblePostsFiltered = filteredArray;
+        this.columns = chunk(sortedArray, 3);
+        this.cd.markForCheck();
     }
 
     logout() {
@@ -68,4 +75,19 @@ export class WallComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {}
+
+    onSearch(value: string) {
+        this.searchText = value;
+        this.updateColumns(this._availablePosts);
+    }
+
+    private getFilteredPosts(posts: Array<Post>, value?: string): Array<Post> {
+        if (!value) {
+            return posts;
+        }
+
+        return posts.filter(
+            post => post.title.includes(value) || post.body.includes(value)
+        );
+    }
 }
