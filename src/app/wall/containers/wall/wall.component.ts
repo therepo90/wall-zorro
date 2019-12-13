@@ -11,6 +11,7 @@ import { interval } from 'rxjs';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { filter } from 'rxjs/operators';
 import { chunk, orderBy } from 'lodash-es';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
     selector: 'app-wall',
@@ -24,6 +25,7 @@ export class WallComponent implements OnInit, OnDestroy {
 
     constructor(
         private wallService: WallService,
+        private authService: AuthService,
         private cd: ChangeDetectorRef
     ) {}
 
@@ -36,9 +38,9 @@ export class WallComponent implements OnInit, OnDestroy {
             )
             .subscribe((posts: Array<Post>) => {
                 const allPosts = posts;
-               /* this.columns = chunk(allPosts, 3);
+                this.columns = chunk(allPosts, 3);
                 this.cd.markForCheck();
-                return;*/
+                return;
 
                 const subscription = interval(1000)
                     .pipe(untilDestroyed(this))
@@ -52,13 +54,17 @@ export class WallComponent implements OnInit, OnDestroy {
                         ]);
                         this._visiblePosts = sortedArray;
                         this.columns = chunk(sortedArray, 3);
-                        console.log({sortedArray}, {x: this.columns})
+                        console.log({ sortedArray }, { x: this.columns });
                         if (allPosts.length === 0) {
                             subscription.unsubscribe();
                         }
                         this.cd.markForCheck();
                     });
             });
+    }
+
+    logout() {
+        this.authService.logout();
     }
 
     ngOnDestroy(): void {}

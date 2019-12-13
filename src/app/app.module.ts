@@ -16,12 +16,12 @@ registerLocaleData(en);
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        AppRoutingModule,
         HttpClientModule,
         SharedModule,
         AuthModule.forRoot(),
         StorageModule.forRoot(),
         WallModule,
+        AppRoutingModule,
     ],
     providers: [{ provide: NZ_I18N, useValue: en_US }],
     bootstrap: [AppComponent],
