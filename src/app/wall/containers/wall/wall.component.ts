@@ -43,10 +43,6 @@ export class WallComponent implements OnInit, OnDestroy {
             )
             .subscribe((posts: Array<Post>) => {
                 const allPosts = posts;
-                // @TODO remove
-                this.columns = chunk(allPosts, 3);
-                this.updateColumns(allPosts);
-                return;
 
                 const subscription = interval(1000)
                     .pipe(untilDestroyed(this))
