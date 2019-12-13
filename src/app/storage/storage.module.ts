@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { SessionsStorageService } from './services/sessions-storage.service';
-import { StorageService } from './services/storage.service';
+import {CommonModule} from '@angular/common';
+import {ModuleWithProviders, NgModule} from '@angular/core';
+import {SessionsStorageService} from './services/sessions-storage.service';
+import {StorageService} from './services/storage.service';
 
 @NgModule({
   imports: [CommonModule],

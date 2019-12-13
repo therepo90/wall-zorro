@@ -27,7 +27,7 @@ export class AuthService {
         this.router.navigateByUrl('/login');
     }
 
-  isAuthenticated() {
-    return this.storageService.get(this.AUTH_TOKEN_KEY) !== null;
-  }
+    isAuthenticated() {
+        return this.storageService.get(this.AUTH_TOKEN_KEY) !== null;
+    }
 }

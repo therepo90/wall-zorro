@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Post } from '../../wall/models/post';
-import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { NzModalService } from 'ng-zorro-antd';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {NzModalService} from 'ng-zorro-antd';
 
 @Injectable({
     providedIn: 'root',

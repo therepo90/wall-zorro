@@ -1,9 +1,9 @@
-import { Location } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { WallService } from '../../services/wall.service';
-import { ActivatedRoute } from '@angular/router';
-import { Post } from '../../models/post';
-import { Observable } from 'rxjs';
+import {Location} from '@angular/common';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {WallService} from '../../services/wall.service';
+import {ActivatedRoute} from '@angular/router';
+import {Post} from '../../models/post';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-post-details',

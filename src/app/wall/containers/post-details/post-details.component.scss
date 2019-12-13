@@ -1,6 +1,10 @@
 .meta-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px 40px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px 40px 40px;
+}
+
+.title {
+  text-align: center;
 }
