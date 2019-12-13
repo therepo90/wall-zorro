@@ -1,0 +1,24 @@
+<div class="meta-bar">
+  <button nz-button nzType="default" (click)="goBack()" nzSize="large" [nzBlock]="true">
+    Go back
+  </button>
+</div>
+
+<h2 nz-title>
+  Details
+</h2>
+
+<div *ngIf="post$ | async as post">
+  <div>
+    UserId: {{getRandomName(post.userId)}}
+  </div>
+  <div>
+    Id: {{post.id}}
+  </div>
+  <div>
+    Title: {{post.title}}
+  </div>
+  <div>
+    Body: {{post.body}}
+  </div>
+</div>

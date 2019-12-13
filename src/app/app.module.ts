@@ -17,7 +17,7 @@ registerLocaleData(en);
     declarations: [AppComponent],
     imports: [
         HttpClientModule,
-        SharedModule,
+        SharedModule.forRoot(),
         AuthModule.forRoot(),
         StorageModule.forRoot(),
         WallModule,

@@ -1,22 +1,31 @@
 <div class="meta-bar">
-    <button nz-button nzType="default" (click)="logout()" nzSize="large">
+    <button
+        nz-button
+        nzType="default"
+        (click)="logout()"
+        nzSize="large"
+        [nzBlock]="true"
+        class="logout-btn"
+    >
         Log out
     </button>
-    <div>
-        <nz-input-group nzSearch nzSize="large">
-            <input
-                type="text"
-                nz-input
-                placeholder="input search text"
-                [ngModel]="searchText"
-                (ngModelChange)="onSearch($event)"
-            />
-        </nz-input-group>
-    </div>
+    <nz-input-group nzSearch nzSize="large" class="search-box">
+        <input
+            type="text"
+            nz-input
+            placeholder="input search text"
+            [ngModel]="searchText"
+            (ngModelChange)="onSearch($event)"
+        />
+    </nz-input-group>
 </div>
 <div class="grid">
     <div *ngFor="let postsColumn of columns" class="post-column">
-        <div *ngFor="let post of postsColumn" class="post">
+        <div
+            *ngFor="let post of postsColumn"
+            class="post"
+            (click)="goToPost(post)"
+        >
             <div class="user-id">UserId: {{ post.userId }}</div>
             <div class="title">Title: {{ post.title }}</div>
         </div>

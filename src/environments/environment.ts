@@ -3,11 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-           production: false,
-           api: {
-               posts: 'https://jsonplaceholder.typicode.com/posts',
-           },
-       };
+    production: false,
+    api: {
+        posts: 'https://jsonplaceholder.typicode.com/posts',
+        post(postId: string) {
+            return `https://jsonplaceholder.typicode.com/posts/${postId}`;
+        },
+    },
+};
 
 /*
  * For easier debugging in development mode, you can import the following file

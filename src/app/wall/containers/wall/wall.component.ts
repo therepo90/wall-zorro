@@ -12,6 +12,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 import { filter } from 'rxjs/operators';
 import { chunk, orderBy } from 'lodash-es';
 import { AuthService } from '../../../auth/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-wall',
@@ -28,6 +29,8 @@ export class WallComponent implements OnInit, OnDestroy {
     constructor(
         private wallService: WallService,
         private authService: AuthService,
+        private router: Router,
+        private route: ActivatedRoute,
         private cd: ChangeDetectorRef
     ) {}
 
@@ -89,5 +92,9 @@ export class WallComponent implements OnInit, OnDestroy {
         return posts.filter(
             post => post.title.includes(value) || post.body.includes(value)
         );
+    }
+
+    goToPost(post: Post) {
+        this.router.navigate([post.id, 'details'], { relativeTo: this.route });
     }
 }
